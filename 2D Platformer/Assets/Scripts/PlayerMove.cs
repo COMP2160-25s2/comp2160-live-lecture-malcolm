@@ -90,12 +90,16 @@ public class PlayerMove : MonoBehaviour
 #region Gizmos
     void OnDrawGizmos()
     {
-        if (Application.isPlaying)
+        if (!Application.isPlaying)
         {
-            Handles.color = Color.white;
-            Handles.Label(transform.position, $"rigidbody.linearVelocity = {rigidbody.linearVelocity}"); 
             return;
         }
+
+        Gizmos.color = Color.black;
+        Gizmos.DrawSphere(rigidbody.position, 0.1f);
+        Handles.color = Color.white;
+        Handles.Label(rigidbody.position, $"rigidbody.linearVelocity = {rigidbody.linearVelocity}"); 
+
     }
 #endregion
 }
