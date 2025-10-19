@@ -18,9 +18,9 @@ public class PlayerMove : MonoBehaviour
 
 #region Parameters
     [SerializeField] private float gravity = -10f;  // m/s/s
+    [SerializeField] private float jumpHeight = 2.5f;  // m
     [SerializeField] private float maxFallSpeed = -20f; // m/s 
     [SerializeField] private float horizontalSpeed = 10f;  // m/s/s
-    [SerializeField] private float jumpSpeed = 10f;  // m/s
     [SerializeField] private float maxOnGroundAngle = 45f;  // degrees
     [SerializeField] private float jumpBufferTime = 0.1f;  // s
 #endregion 
@@ -36,7 +36,6 @@ public class PlayerMove : MonoBehaviour
     private Actions actions;
     private InputAction moveAction;
     private List<ContactPoint2D> contacts;
-
     private float lastJumpPressedTime = float.NegativeInfinity;
 #endregion
 
@@ -102,6 +101,11 @@ public class PlayerMove : MonoBehaviour
             // so we need to scale impulse by mass
             // in 3D we could use ForceMode.DeltaVelocity but that doesn't exist in 2D
 
+            // v^2 = u^2 + 2as
+            // At the top of the jump, v = 0, a = gravity, s = jumpHeight
+            // u^2 = sqrt(-2as)
+
+            float jumpSpeed = Mathf.Sqrt(-2 * gravity * jumpHeight);
             rigidbody.AddForce(Vector2.up * jumpSpeed * rigidbody.mass, ForceMode2D.Impulse);                
 
             // forget the jump request by setting it to infinitely into the past
