@@ -230,6 +230,10 @@ PrefabInstance:
       propertyPath: gravity
       value: -40
       objectReference: {fileID: 0}
+    - target: {fileID: 1728201070099936954, guid: 8e3ea337e2a4f416ea6efbd64dae438a, type: 3}
+      propertyPath: jumpHeight
+      value: 2.2
+      objectReference: {fileID: 0}
     - target: {fileID: 2305958696730268171, guid: 8e3ea337e2a4f416ea6efbd64dae438a, type: 3}
       propertyPath: m_Name
       value: Player
