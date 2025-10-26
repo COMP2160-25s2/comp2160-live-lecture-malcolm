@@ -161,11 +161,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 546756635}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ed8fb34fca18a44e6880e94bc507b270, type: 3}
+  m_Script: {fileID: 11500000, guid: e5ef2b7e35fcb4b6ab5f8b309ade7600, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  followDecay: 0.05
-  target: {fileID: 1211975292}
+  fixedFrameRate: 100
+  offset: 5
+  target: {fileID: 1211975289}
 --- !u!1 &1211975283 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 2305958696730268171, guid: 8e3ea337e2a4f416ea6efbd64dae438a, type: 3}
@@ -208,11 +209,17 @@ CapsuleCollider2D:
   m_Offset: {x: 0, y: 0.9}
   m_Size: {x: 0.9, y: 1.8}
   m_Direction: 0
---- !u!4 &1211975292 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 8201219766830635207, guid: 8e3ea337e2a4f416ea6efbd64dae438a, type: 3}
+--- !u!114 &1211975289 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1728201070099936954, guid: 8e3ea337e2a4f416ea6efbd64dae438a, type: 3}
   m_PrefabInstance: {fileID: 156878545766241910}
   m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1211975283}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 44646c088fd2a418aab792dee4639e4b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1315461603
 PrefabInstance:
   m_ObjectHideFlags: 0
