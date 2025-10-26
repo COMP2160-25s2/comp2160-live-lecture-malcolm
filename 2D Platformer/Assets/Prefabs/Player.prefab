@@ -106,7 +106,7 @@ Rigidbody2D:
     m_Bits: 0
   m_Interpolate: 1
   m_SleepingMode: 1
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
   m_Constraints: 4
 --- !u!114 &1728201070099936954
 MonoBehaviour:
@@ -120,9 +120,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 44646c088fd2a418aab792dee4639e4b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gravity: -10
-  maxFallSpeed: -20
   horizontalSpeed: 10
+  gravity: -10
+  jumpHeight: 2.5
+  maxFallSpeed: -20
+  maxOnGroundAngle: 45
+  jumpBufferDuration: 0.1
+  hoverDuration: 0.1
+  maxHistoryDuration: 10
 --- !u!1 &3256245443759807133
 GameObject:
   m_ObjectHideFlags: 0

@@ -69,6 +69,8 @@ public class PlayerMove : MonoBehaviour
     void Awake()
     {
         rigidbody = GetComponent<Rigidbody2D>();
+        rigidbody.gravityScale = 0; // we're doing our own gravity
+
         actions = new Actions();
         moveAction = actions.PlayerMove.Move;
 
