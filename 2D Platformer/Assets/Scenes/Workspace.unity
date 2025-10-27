@@ -161,10 +161,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 546756635}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e5ef2b7e35fcb4b6ab5f8b309ade7600, type: 3}
+  m_Script: {fileID: 11500000, guid: 05cc174eb4ab640bd90237fd60b07849, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   fixedFrameRate: 100
+  followDecay: 0.05
   offset: 5
   target: {fileID: 1211975289}
 --- !u!1 &1211975283 stripped

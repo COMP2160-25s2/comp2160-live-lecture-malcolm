@@ -40,8 +40,12 @@ public class PlayerMove : MonoBehaviour
 #endregion
 
 #region State
-    private enum JumpState { OnGround, RisingWithGravity, Hovering, FallingWithGravity, FallingWithoutGravity };
+    public enum JumpState { OnGround, RisingWithGravity, Hovering, FallingWithGravity, FallingWithoutGravity };
     private JumpState jumpState = JumpState.FallingWithGravity;
+    public JumpState State
+    {
+        get { return jumpState; }
+    }
 
     private Actions actions;
     private InputAction moveAction;
