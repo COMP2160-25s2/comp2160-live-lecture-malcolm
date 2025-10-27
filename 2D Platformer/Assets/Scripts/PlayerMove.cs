@@ -36,7 +36,7 @@ public class PlayerMove : MonoBehaviour
 #endregion
 
 #region Components
-    private Rigidbody2D rigidbody;
+    private new Rigidbody2D rigidbody;
 #endregion
 
 #region State

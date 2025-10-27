@@ -14,58 +14,79 @@ public class CameraFollow3 : MonoBehaviour
     [SerializeField] private int fixedFrameRate = 100; // fps
     [SerializeField] private float followDecay = 0.05f;
     [SerializeField] private float offset = 5; // m
+    [Header("Debug")]
+    [SerializeField] private bool capFrameRate = true;
+    [SerializeField] private int targetFrameRate = 30;
 #endregion 
 
 #region Connected Objects
-    [SerializeField] private PlayerMove target;
+    [Header("Connected Objects")]
+    [SerializeField] private PlayerMove player;
 #endregion
 
 #region Components
 #endregion
 
 #region State
-    private Rigidbody2D targetRigidbody;
-    private Transform targetTransform;
-    private Vector3 desiredPosition;
+    private Rigidbody2D playerRigidbody;
+    private Transform playerTransform;
+    private Vector3 targetPosition;
 #endregion
 
 #region Init & Destroy
     void Awake()
     {
-        targetRigidbody = target.GetComponent<Rigidbody2D>();
-        targetTransform = target.transform;
+        playerRigidbody = player.GetComponent<Rigidbody2D>();
+        playerTransform = player.transform;
 
-        desiredPosition = targetTransform.position;
+        targetPosition = playerTransform.position;
+
+        // For QA: we can cap the frame rate to see how this runs
+        // TODO: We should migrate this to a general QA Manager class.
+
     }
 #endregion 
 
 #region Update
     void LateUpdate()
     {
+        if (capFrameRate)
+        {
+            QualitySettings.vSyncCount = 0;
+            Application.targetFrameRate = targetFrameRate;
+        }
+        else
+        {
+            // ignore Application.targetFrameRate, instead use refresh rate of the monitor
+            QualitySettings.vSyncCount = 1;            
+        }
+ 
         // update horizontal positio
-        desiredPosition.x = targetTransform.position.x;
+        targetPosition.x = playerTransform.position.x;
 
         // horizontal movement is in front of player
-        if (targetRigidbody.linearVelocity.x > 0)
+        if (playerRigidbody.linearVelocity.x > 0)
         {
-            desiredPosition.x += offset;            
+            targetPosition.x += offset;            
         }
-        else if (targetRigidbody.linearVelocity.x < 0)
+        else if (playerRigidbody.linearVelocity.x < 0)
         {
-            desiredPosition.x -= offset;            
+            targetPosition.x -= offset;            
         }
 
         // reset desired vertical position only when the player is on the grounfd
 
-        if (target.State == PlayerMove.JumpState.OnGround)
+        if (player.State == PlayerMove.JumpState.OnGround)
         {
-            desiredPosition.y = targetTransform.position.y;
+            targetPosition.y = playerTransform.position.y;
         }
 
         // lerp towards desired position at fixed frame rate
+        Debug.Log($"deltaTime = {Time.deltaTime}, FPS = {1f / Time.deltaTime}");
+
         for (float time = 0; time < Time.deltaTime; time += 1f / fixedFrameRate)
         {
-            transform.position = Vector3.Lerp(transform.position, desiredPosition, followDecay);            
+            transform.position = Vector3.Lerp(transform.position, targetPosition, followDecay);            
         }
     }
 #endregion
@@ -79,8 +100,9 @@ public class CameraFollow3 : MonoBehaviour
             return;
         }
 
+        // show where the camera is heading
         Gizmos.color = Color.white;
-        Gizmos.DrawSphere(transform.position, 0.1f);
+        Gizmos.DrawSphere(targetPosition, 0.1f);
     }
 #endregion
 }

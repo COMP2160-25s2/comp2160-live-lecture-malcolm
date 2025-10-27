@@ -167,7 +167,9 @@ MonoBehaviour:
   fixedFrameRate: 100
   followDecay: 0.05
   offset: 5
-  target: {fileID: 1211975289}
+  capFrameRate: 1
+  targetFrameRate: 30
+  player: {fileID: 1211975289}
 --- !u!1 &1211975283 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 2305958696730268171, guid: 8e3ea337e2a4f416ea6efbd64dae438a, type: 3}
